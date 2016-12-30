@@ -6,6 +6,11 @@ import (
 )
 
 const (
+	VERSION_CODE = "1"
+	VERSION_NAME = "1.0.0"
+)
+
+const (
 	color_black   = uint8(iota + 90)
 	color_red
 	color_green
