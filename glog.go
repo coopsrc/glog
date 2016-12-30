@@ -26,62 +26,46 @@ const (
 	assert  = "[ASST]"
 )
 
-// https://en.wikipedia.org/wiki/ANSI_escape_code#cite_note-ecma48-13
-
 func Verbose(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(verbose)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 func Trace(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(trace)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 func Error(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(errors)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 func Warn(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(warn)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 func Info(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(info)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 func Debug(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(debug)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 func Asset(tag string, format string, a ...interface{}) {
-
 	level := formatLevel(assert)
-	colorTag := formatTag(level, tag)
 
-	fmt.Println(formatPrefix(colorTag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
 // https://en.wikipedia.org/wiki/ANSI_escape_code#cite_note-ecma48-13
@@ -108,10 +92,6 @@ func formatLevel(level string) string {
 
 }
 
-func formatTag(level string, tag string) string {
-	return fmt.Sprintf("%s%s", level, tag)
-}
-
-func formatPrefix(colorTag string) string {
-	return fmt.Sprintf("%s%s:", time.Now().Format("2006-01-02 15:04:05.999"), colorTag)
+func formatPrefix(level string, tag string) string {
+	return fmt.Sprintf("%s%s%s:", time.Now().Format("2006-01-02 15:04:05.99"), level, tag)
 }
