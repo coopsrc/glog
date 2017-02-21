@@ -7,11 +7,10 @@ import (
 
 const (
 	VERSION_CODE = "1"
-	VERSION_NAME = "1.0.0"
+	VERSION_NAME = "1.1.0"
 )
-
 const (
-	color_black   = uint8(iota + 90)
+	color_black = uint8(iota + 90)
 	color_red
 	color_green
 	color_yellow
@@ -20,7 +19,6 @@ const (
 	color_cyan
 	color_white
 )
-
 const (
 	verbose = "[VERB]"
 	trace   = "[TRAC]"
@@ -31,45 +29,72 @@ const (
 	assert  = "[ASST]"
 )
 
-func Verbose(tag string, format string, a ...interface{}) {
+func Verbose(tag string, message string) {
 	level := formatLevel(verbose)
+	fmt.Println(formatPrefix(level, tag), message)
+}
 
+func VerboseF(tag string, format string, a ...interface{}) {
+	level := formatLevel(verbose)
 	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
-func Trace(tag string, format string, a ...interface{}) {
+func Trace(tag string, message string) {
 	level := formatLevel(trace)
-
-	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
+	fmt.Println(formatPrefix(level, tag), message)
 }
 
-func Error(tag string, format string, a ...interface{}) {
+func TraceF(tag string, format string, a ...interface{}) {
+	level := formatLevel(trace)
+	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
+}
+func Error(tag string, message string) {
 	level := formatLevel(errors)
+	fmt.Println(formatPrefix(level, tag), message)
+}
 
+func ErrorF(tag string, format string, a ...interface{}) {
+	level := formatLevel(errors)
 	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
-func Warn(tag string, format string, a ...interface{}) {
+func Warn(tag string, message string) {
 	level := formatLevel(warn)
+	fmt.Println(formatPrefix(level, tag), message)
+}
 
+func WarnF(tag string, format string, a ...interface{}) {
+	level := formatLevel(warn)
 	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
-func Info(tag string, format string, a ...interface{}) {
+func Info(tag string, message string) {
 	level := formatLevel(info)
+	fmt.Println(formatPrefix(level, tag), message)
+}
 
+func InfoF(tag string, format string, a ...interface{}) {
+	level := formatLevel(info)
 	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
-func Debug(tag string, format string, a ...interface{}) {
+func Debug(tag string, message string) {
 	level := formatLevel(debug)
+	fmt.Println(formatPrefix(level, tag), message)
+}
 
+func DebugF(tag string, format string, a ...interface{}) {
+	level := formatLevel(debug)
 	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
-func Asset(tag string, format string, a ...interface{}) {
+func Asset(tag string, message string) {
 	level := formatLevel(assert)
+	fmt.Println(formatPrefix(level, tag), message)
+}
 
+func AssetF(tag string, format string, a ...interface{}) {
+	level := formatLevel(assert)
 	fmt.Println(formatPrefix(level, tag), fmt.Sprintf(format, a...))
 }
 
